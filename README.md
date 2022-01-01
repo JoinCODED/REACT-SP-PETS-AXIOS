@@ -31,3 +31,23 @@ If you need a starting repo clone [this](https://github.com/JoinCODED/REACT-SP-P
 1. The last method that we are going to implement is the `delete` method, in your adopt function add `async` `await`.
 2. We don't need to store the response this time, so directly pass the `petId` in the url so the backend knows which pet to remove. Also add `try` `catch`.
 
+```
+Endpoints:
+Fetch all pets:
+Endpoint: http://localhost:5000/pets
+Method: GET
+
+Create a pet:
+Endpoint: http://localhost:5000/pets
+Method: POST
+Data required: name,type,image
+
+Update a pet:
+Endpoint: http://localhost:5000/pets/:petId
+Method: PUT
+Data required: name,type,image
+
+Delete a pet:
+Endpoint: http://localhost:5000/pets/:petId
+Method: Delete
+```

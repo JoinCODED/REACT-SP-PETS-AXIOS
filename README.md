@@ -1,36 +1,33 @@
-If you need a starting repo clone this
+If you need a starting repo clone [this](https://github.com/JoinCODED/REACT-SP-PETS-AXIOS)
 
 ### Axios
 
-1. `npm install axios`
+1. Install `axios` using `npm`.
 2. Until now, our data are coming from our dummy data file `petsData.js`. It's time to change that, import `axios` in `petStore.js`.
-3. Setup your component and import `Modal` from bootstrap.
-4. Create a state for showing the modal with an intial value of `false`.
-5. Create a `handleClose` and `handleShow` functions that changes our state to `false` or `true`.
-6. Create a button that when pressed calls the `handleShow` function.
-7. create your modal as the docs suggests [docs](https://react-bootstrap.github.io/components/modal/)
+3. Create a function called `fetchPets`.
+4. Use the `get` method from `axios` to fetch data from our api and store the result in a variable called `response`.
+5. Remember, all `axios` method are asynchronous add `async` and `await` to your function.
+6. Now store the data coming from the backend in our `pets` array.
+7. Change the `pets` array to equal an empty array and delete the import for our dummy data file.
+8. Refresh your website, the data is gone, because nothing is calling our fetch function, to call it once when the website loads call it after you initiate the store instance.
+9. But what if the backend is offline, or for whatever reason the request failed, we need to catch this error. Add a try catch block to our function.
 
-### Bootstrap form.
+### Adding a pet.
 
-1. In the Modal body create a form with the following fields: name,type and image, docs are your friend! [docs](https://react-bootstrap.github.io/components/forms/)
-2. Create a state to hold our data.
-3. Create a `handleChange` method that modifies our state object and pass it to every field in their `onChange` proprety. Also add a `name` proprety to each field that matches the state object.
-4. Create a `handleSubmit` method that for now console logs our state data and closes the modal. Also pass this method to your submit button.
-5. Don't forget to prevent the page from refreshing.
-6. Import our modal in `PetsList` and render it at the top.
+1. Let's move to our `addPet` function, add `async` `await` and use the `post` `axios` method.
+2. We need to send the required data to the backend, so as a second argument pass our `pet` to the `post` method.
+3. The last thing we need to do is to add our `response.data` to the `pets` array, because the backend generates some data that we need, in this case the `id` will be generated and returned by the backend.
+4. Add `try` `catch` to your function.
 
-### Creating in mobx.
+### Updating A Pet.
 
-1. In our `petStore` let's create a method for adding a pet. Don't forget to mark it as an actions.
-2. It takes an argument with our pet data but we still need an `id`, can you genereta an `id`?
-3. In `CreateModal.js` import our store and in `handleSubmit` call our new method and pass it our state.
+1. Let's move to our `updatePet` function, add `async` `await` and use the `put` `axios` method.
+2. Lets take a look at our endpoint, it ends with `/:petId`, this means you need to pass the `id` of the thing you want to update in the url, use template litirals.
+3. And as a second argument pass the data that you want to update.
+4. Complete your function and add a `try` `catch`.
 
-### Updating a pet data.
+### Removing A Pet.
 
-1. Create a file called `UpdateModal.js` in `Components`
-2. Copy the same modal from your `CreateModal` component and fix the namings.
-3. Import the update modal in your `PetItem` component below the adopt button.
-4. For updating, we need the old values for the user to see, so let's pass the old data from `PetItem` to our modal using props.
-5. In our update modal get those props to create an inital value for our state, also add an id value because we already have one. but how to show them in our fields? hint: use the `value` proprety.
-6. In our mobx store create an `update` method thats takes an arguemnt and replaces the old pet with the new data coming with the same `id`. Don't forget to mark it as an `action`.
-7. In `UpdateModal` call this new method in the `handleSubmit` function.
+1. The last method that we are going to implement is the `delete` method, in your adopt function add `async` `await`.
+2. We don't need to store the response this time, so directly pass the `petId` in the url so the backend knows which pet to remove. Also add `try` `catch`.
+
